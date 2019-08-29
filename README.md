@@ -15,3 +15,7 @@ Setup your email template HTML file.
 2. Prepare your target emails.
 3. Fill the mail form with all your details.
 4. Run the app and wait. It takes time (intentionally). I run this in the night.
+
+![First Screenshot](images/1.JPG)
+
+![Second Screenshot](images/2.JPG)
