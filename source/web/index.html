@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v4.10.3, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/logo4.png" type="image/x-icon">
+  <meta name="description" content="">
+
+  <title>Home</title>
+  <link rel="stylesheet" href="assets/tether/tether.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+  <script src="/eel.js"></script>
+
+
+</head>
+<body>
+  <section class="mbr-section form1 cid-rzgBFvOp1J" id="form1-0">
+
+
+
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="title col-12 col-lg-8">
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
+                    LordGhostX Mailer
+                </h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="media-container-column col-lg-8" data-form-type="formoid">
+                <!---Formbuilder Form--->
+                <form class="mbr-form form-with-styler">
+					<h2>SMTP Configuration</h2>
+                    <div class="dragArea row">
+                        <div class="col-md-6  form-group" data-for="name">
+                            <label for="name-form1-0" class="form-control-label mbr-fonts-style display-7">Host</label>
+                            <input type="text" name="name" data-form-field="Name" required="required" class="form-control display-7" id="host">
+                        </div>
+                        <div class="col-md-6  form-group" data-for="email">
+                            <label for="email-form1-0" class="form-control-label mbr-fonts-style display-7">Port</label>
+                            <input type="text" name="email" data-form-field="Email" required="required" class="form-control display-7" id="port">
+                        </div>
+                        <div data-for="phone" class="col-md-6  form-group">
+                            <label for="phone-form1-0" class="form-control-label mbr-fonts-style display-7">Login</label>
+                            <input type="text" name="phone" data-form-field="Phone" class="form-control display-7" id="login">
+                        </div>
+						<div data-for="phone" class="col-md-6  form-group">
+                            <label for="phone-form1-0" class="form-control-label mbr-fonts-style display-7">Password</label>
+                            <input type="text" name="phone" data-form-field="Phone" class="form-control display-7" id="password">
+                        </div>
+                    </div>
+					<br> <h2>Email Configuration</h2>
+                    <div class="dragArea row">
+                        <div class="col-md-12  form-group" data-for="email">
+                            <label for="email-form1-0" class="form-control-label mbr-fonts-style display-7">Subject</label>
+                            <input type="text" name="email" data-form-field="Email" required="required" class="form-control display-7" id="subject">
+                        </div>
+						<div data-for="message" class="col-md-12 form-group">
+                            <label for="message-form1-0" class="form-control-label mbr-fonts-style display-7">Message</label>
+                            <textarea name="message" data-form-field="Message" class="form-control display-7" id="message"></textarea>
+                        </div>
+						<div data-for="message" class="col-md-12 form-group">
+                            <label for="message-form1-0" class="form-control-label mbr-fonts-style display-7">Emails</label>
+                            <textarea name="message" data-form-field="Message" class="form-control display-7" id="emails" placeholder="Enter all the emails to send to line by line..."></textarea>
+                        </div>
+                        <div class="col-md-12 input-group-btn align-center">
+                            <button type="submit" class="btn btn-primary btn-form display-4" onclick="sendmails()">SEND EMAILS</button>
+                        </div>
+                    </div>
+                </form><!---Formbuilder Form--->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="assets/web/assets/jquery/jquery.min.js"></script>
+  <script src="assets/popper/popper.min.js"></script>
+  <script src="assets/tether/tether.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/smoothscroll/smooth-scroll.js"></script>
+  <script src="assets/theme/js/script.js"></script>
+  <script>
+	function sendmails() {
+		var host = document.getElementById("host").value;
+		var port = document.getElementById("port").value;
+		var login = document.getElementById("login").value;
+		var password = document.getElementById("password").value;
+		var subject = document.getElementById("subject").value;
+		var message = document.getElementById("message").value;
+		var emails = document.getElementById("emails").value;
+
+		msg = eel.startsend(host, port, login, password, subject, message, emails);
+	}
+  </script>
+
+</body>
+</html>
