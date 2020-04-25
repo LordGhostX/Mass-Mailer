@@ -36,9 +36,6 @@
         </div>
     </div>
     <div class="container">
-        <div class="col-md-12 input-group-btn align-center">
-            <input id="count" value="0" class="btn btn-primary btn-form display-4" onclick="getCount()">
-        </div>
         <div class="row justify-content-center">
             <div class="media-container-column col-lg-8" data-form-type="formoid">
                 <!---Formbuilder Form--->
@@ -95,27 +92,34 @@
   <script src="assets/theme/js/script.js"></script>
   <script>
 
-    eel.expose(run);
-    async function run() {
-        let n = await eel.getCount()(); // Must prefix call with 'await', otherwise it's the same syntax
-        console.log("Got this from Python: " + n);
+    eel.expose(startAlert);
+    function startAlert() {
+        alert("Emails are being sent in the background, check console for stats.");
     }
 
-	function sendmails() {
-		// var host = document.getElementById("host").value;
-		// var port = document.getElementById("port").value;
-		// var login = document.getElementById("login").value;
-		// var password = document.getElementById("password").value;
-		// var subject = document.getElementById("subject").value;
-		// var message = document.getElementById("message").value;
-		// var emails = document.getElementById("emails").value;
+    eel.expose(finishAlert);
+    function finishAlert() {
+        alert("Emails Sent Successfully, check console for stats.");
+    }
 
-        var host = "mail.0nedrive.online";
-		var port = "26";
-		var login = "penguin@0nedrive.online";
-		var password = "billi@penguin";
-		var subject = "Penguin Testing";
-		var message = "Come live in antartic";
+	function create_UUID(){
+	    var dt = new Date().getTime();
+	    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+	        var r = (dt + Math.random()*16)%16 | 0;
+	        dt = Math.floor(dt/16);
+	        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+	    });
+	    return uuid;
+	}
+
+	function sendmails() {
+		var host = document.getElementById("host").value;
+		var port = document.getElementById("port").value;
+		var login = document.getElementById("login").value;
+		var password = document.getElementById("password").value;
+		var subject = document.getElementById("subject").value;
+		var message = document.getElementById("message").value;
+        message = message.concat("<br><br>","Digital Signature: ", create_UUID());
 		var emails = document.getElementById("emails").value;
 
 		msg = eel.startsend(host, port, login, password, subject, message, emails);
