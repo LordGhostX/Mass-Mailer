@@ -29,7 +29,7 @@
         <div class="row justify-content-center">
             <div class="title col-12 col-lg-8">
                 <h1 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2">
-                    LordGhostX Mailer
+                    Mass Mailer
                 </h1>
 
             </div>
@@ -40,15 +40,15 @@
             <div class="media-container-column col-lg-8" data-form-type="formoid">
                 <!---Formbuilder Form--->
                 <form class="mbr-form form-with-styler">
-					<h2>SMTP Configuration</h2>
+                    <h2>SMTP Configuration</h2>
                     <div class="dragArea row">
                         <div class="col-md-6  form-group" data-for="name">
                             <label for="name-form1-0" class="form-control-label mbr-fonts-style display-7">Host</label>
-                            <input type="text" name="name" data-form-field="Name" required="required" class="form-control display-7" id="host">
+                            <input type="text" name="name" data-form-field="Name"  class="form-control display-7" id="host">
                         </div>
                         <div class="col-md-6  form-group" data-for="email">
                             <label for="email-form1-0" class="form-control-label mbr-fonts-style display-7">Port</label>
-                            <input type="text" name="email" data-form-field="Email" required="required" class="form-control display-7" id="port">
+                            <input type="text" name="email" data-form-field="Email"  class="form-control display-7" id="port">
                         </div>
                         <div data-for="phone" class="col-md-6  form-group">
                             <label for="phone-form1-0" class="form-control-label mbr-fonts-style display-7">Login</label>
@@ -63,7 +63,7 @@
                     <div class="dragArea row">
                         <div class="col-md-12  form-group" data-for="email">
                             <label for="email-form1-0" class="form-control-label mbr-fonts-style display-7">Subject</label>
-                            <input type="text" name="email" data-form-field="Email" required="required" class="form-control display-7" id="subject">
+                            <input type="text" name="email" data-form-field="Email"  class="form-control display-7" id="subject">
                         </div>
 						<div data-for="message" class="col-md-12 form-group">
                             <label for="message-form1-0" class="form-control-label mbr-fonts-style display-7">Message</label>
@@ -91,6 +91,27 @@
   <script src="assets/smoothscroll/smooth-scroll.js"></script>
   <script src="assets/theme/js/script.js"></script>
   <script>
+
+    eel.expose(startAlert);
+    function startAlert() {
+        alert("Emails are being sent in the background, check console for stats.");
+    }
+
+    eel.expose(finishAlert);
+    function finishAlert() {
+        alert("Emails Sent Successfully, check console for stats.");
+    }
+
+	function create_UUID(){
+	    var dt = new Date().getTime();
+	    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+	        var r = (dt + Math.random()*16)%16 | 0;
+	        dt = Math.floor(dt/16);
+	        return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+	    });
+	    return uuid;
+	}
+
 	function sendmails() {
 		var host = document.getElementById("host").value;
 		var port = document.getElementById("port").value;
@@ -98,6 +119,7 @@
 		var password = document.getElementById("password").value;
 		var subject = document.getElementById("subject").value;
 		var message = document.getElementById("message").value;
+        message = message.concat("<br><br>","Digital Signature: ", create_UUID());
 		var emails = document.getElementById("emails").value;
 
 		msg = eel.startsend(host, port, login, password, subject, message, emails);
